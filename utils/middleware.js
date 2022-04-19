@@ -1,22 +1,19 @@
 const middleware = function (req, res, next) {
-  // req.requestTime = Date.now()
-  // req.date = Date(Date.now())
-  let reqDate = new Date()
-  let method = req.method
-  let url = req.url
+  const reqDate = new Date()
+  const method = req.method
+  const url = req.url
 
   console.log(`${reqDate.toLocaleString()} | ${method} | ${url}`)
 
-  res.on("finish", function () {
-    let resDate = new Date()
-    let totalTime = resDate - reqDate
+  res.on('finish', function () {
+    const resDate = new Date()
+    const totalTime = resDate - reqDate
     console.log(`${reqDate.toLocaleString()} | ${method} | ${url} | ${totalTime}ms`)
   })
   next()
 }
 
 module.exports = middleware
-
 
 // Javascript Date.now()用法及代碼示例
 // https://vimsky.com/zh-tw/examples/usage/javascript-date-now.html
